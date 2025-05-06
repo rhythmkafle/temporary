@@ -280,7 +280,7 @@ for x in thistuple:
 #Using the index value:
 thistuple = ("apple", "banana", "cherry")
 for i in range(len(thistuple)):
-  print(thistuple[x]) 
+  print(thistuple[i]) 
 
 
 '''
@@ -389,5 +389,222 @@ print(set3)
 
 # Intersection - only the common elements
 set4 =set1.intersection(set2)
+print(set4)
 
 # difference - keeps the items from the first set that are not in the other set
+set5 = set1.difference(set2)
+print(set5) # Output: {'c', 'b', 'a'}
+
+# Symmetric differences - only keeps the elements that are NOT PRESENT IN BOTH THE SETS i.e. that are NOT COMMON IN BOTH THE SETS
+set6 = set1.symmetric_difference(set2)
+print(set6) # OUtput: {1, 2, 3, 'a', 'b', 'c'} , this may seem like union, but it is not
+
+
+'''
+Frozen Sets in python
+    - they are an immutable version of a set
+    - once created, it cannot be updated
+    - they can be created using the frozenset() function
+    - you cannot perform any updates, however, you can use Set Operations (union, intersection,...) to it
+'''
+
+animals = frozenset(["cat", "dog", "lion"])
+animals2 = frozenset(["human", "dog", "tiger"])
+
+animals3 = animals.intersection(animals2)
+print(animals3) # Output: frozenset({'dog'})
+
+
+
+
+'''
+Dictionaries in Python
+    - ordered collection of key value pairs
+    - does not allow duplicates
+    - written with curly brackets, and key-value pairs 
+    - just like all other collections we have learnt(lists, sets, tuples), dictionary can contain any data types
+    - can also be made using the dict() keyword
+'''
+thisdict = {
+    "brand": "Ford",
+    "model": "Mustang",
+    "year": 1964
+}
+print(thisdict) # Output: {'brand': 'Ford', 'model': 'Mustang', 'year': 1964}
+print(len(thisdict))
+
+#using dict() keyword
+thisdict = dict(name = "John", age = 36, country = "Norway")
+
+'''
+Accessing Items in Dictionaries
+    - by referring key
+    - using .get() method
+    - using .keys() method
+    - using .values() method
+    - using .items() method
+'''
+thisdict = {
+    "brand": "Ford",
+    "model": "Mustang",
+    "year": 1964
+}
+
+# by referring key
+print(thisdict["model"]) # output: Mustang
+
+# using .get() method
+print(thisdict.get("model")) # output: Mustang
+
+# using .keys() - returns list of all the keys in the dictionary
+print(thisdict.keys()) # OUtput: dict_keys(['brand', 'model', 'year'])
+
+# using .values() - returns list of all the values in the dictionary
+print(thisdict.values()) # output: dict_values(['Ford', 'Mustang', 1964])
+
+# using .items() - returns all keys and values, as tuples in a list 
+print(thisdict.items()) # dict_items([('brand', 'Ford'), ('model', 'Mustang'), ('year', 1964)])
+
+'''
+Changing values in a dictionary:
+    - by referring to it's key
+    - by using the .update() method
+'''
+
+# by referring to its key
+thisdict =	{
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+thisdict["year"] = 2018 # changes the year to 2018
+
+# by using .update() method
+thisdict.update({"year": 2020})
+
+'''
+Updating values in a dictionary
+    - same way as changing the values, by referring to key and using the update method
+'''
+
+# By referring to a key
+thisdict =	{
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+thisdict["owner"] = "Rhythm" # adds a key owner, with the value Rhythm
+
+# Using the .update() method
+thisdict.update({"owner": "Rhythm"})
+
+'''
+Deleting the items in a dictionary
+    - using .pop()
+    - using .popitem()
+    - using del keyword
+    - using .clear() method
+'''
+thisdict =	{
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964,
+  "owner": "Rhythm"
+}
+
+# using .pop() - removes the item with the specified keyname
+thisdict.pop("year")
+
+# using .popitem() - removes the last inserted item (in our case, removes "owner": "Rhythm")
+thisdict.popitem()
+
+# Using del keyword - removes the item with the specified keyname
+del thisdict["model"]
+
+# using .clear() method - empties the whole dictionary
+thisdict.clear()
+
+'''
+Looping through a dictionary
+    - using .values()
+    - using .keys()
+    - using .items()
+'''
+
+thisdict =	{
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+
+# using .values() - returns only the values
+for x in thisdict.values():
+    print(x, end=" ") # output: Ford Mustang 1964
+
+# using .keys() - returns only the keys
+for x in thisdict.keys():
+    print(x, end=" ") # output: brand model year
+
+# using .items() - returns both keys and values
+for x, y in thisdict.items():
+    print(x, y) 
+    ''' Output: 
+                brand Ford
+                model Mustang
+                year 1964
+    '''
+
+
+'''
+Copying dictionaries
+    - using .copy() method
+    - using dict() constructor
+'''
+thisdict =	{
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+
+# using .copy()
+new_dict = thisdict.copy()
+
+# using dict()
+new_dict = dict(thisdict)
+
+
+
+'''
+Binary Types in Python
+    - we can work with bits and bytes in python too using the binary types
+    - if you add a 'b' before any string, it is no longer a string. It now becomes a byte
+'''
+
+this_is_a_byte = b'hello'
+print(this_is_a_byte) # Output: b'hello'
+
+'''
+Bitwise operations
+    - |, &, ^, >>, <<
+'''
+
+
+'''
+None Types in Python
+    - there is only one None type object during a code execution, and hence it is called as singleton object
+    - None is not zero
+    - None is not empty string
+    - None is not False
+    - when a variable does not have any meaningful initial value, you can assign it as None
+'''
+
+state = None
+if state is None:
+    state = "start"
+
+print(state) # since state did not have any meaningful initial value, we initialized it as None
+
+
+'''
+Ch2 Finished!!!
+'''
